@@ -1,0 +1,33 @@
+1. 拉取镜像
+	docker pull elasticsearch:7.6.0
+2. 安装容器
+	docker run -d --name elasticsearch  -p 9200:9200 -p 9300:9300 -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -e "discovery.type=single-node" elasticsearch:7.6.0
+3. 更改配置文件 增加跨域
+	vi ./config/elasticsearch.yml
+-------------------------------------------------------------------------------
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+  
+# minimum_master_nodes need to be explicitly set when bound on a public IP
+# set to 1 to allow single node clusters
+# Details: https://github.com/elastic/elasticsearch/pull/17288
+discovery.zen.minimum_master_nodes: 1
+-------------------------------------------------------------------------------
+4. 重启elasticsearch
+	docker restart elasticsearch
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+安装 kibana
+1. docker pull kibana:7.6.0
+2. 运行kibana
+	docker run -it -d -e ELASTICSEARCH_URL=http://127.0.0.1:9200 --name kibana -p 5601:5601 kibana:7.6.0
+3. 进入kibana
+	docker exec -it kibana /bin/bash
+4. 修改配置文件
+	将配置文件kibana.yml中的elasticsearch.url改为正确的链接，默认为: http://elasticsearch:9200改为http://自己的IP地址:9200（这里我用的是外网， 内外不可用）
+	
+
+

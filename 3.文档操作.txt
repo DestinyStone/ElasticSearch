@@ -1,0 +1,36 @@
+1.增加文档
+a.指定id方式
+PUT /persion/_doc/id
+{
+	"id": "1",
+	"name", "zs"
+}
+b.随机id方式
+POST /persion/_doc
+{
+	"id": "1",
+	"name", "zs"
+} 
+
+2.查询文档
+GET /persion/_doc/id
+
+3.更新文档
+POST /persion/_doc/id/_update    (这里不加_update 的话 会覆盖文档)
+{
+	"doc":{
+		"id": "3"
+	}
+}
+
+4.删除文档
+DELETE /persion/_doc/1
+
+5. 批量操作
+POST /persion
+	{"index":{"_id": "1"}}                    
+		{"id": "1", "name": "zs"}                   #增加操作
+	{"update":{"_id": "1"}}
+		{"doc": {"id": "2"}}                               #更新操作
+	{“delete”: {"_id": "1"}} 		#删除操作
+ 
