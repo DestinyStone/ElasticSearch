@@ -1,0 +1,43 @@
+1. 使用对象
+ElasticsearchTemplate    //复制查询， 包含分页， 排序等
+ElasticsearchRepository   //简单查询使用     .search(QueryBuilders);
+
+2. 基本使用
+SearchQuery searchQuery = new NativeSearchQueryBuilder().witQuery("查询条件 可选(使用 QueryBuilders.  )").build();
+elasticsearchTemplate.queryForList(searchQuery, Post.class);
+
+QueryBuilders 使用
+a. match查询
+	matchQuery("arg", "value");
+b. 分词查询
+	termQuery("arg", "value");
+c. 范围查询
+ 	rangeQuery("arg").get(10).lte(20);
+d. 前缀查询
+	prefixQuery("arg", "value")
+e. 通配符查询
+	wildcard("id", "1?")
+f. ids 查询
+	idsQuery().addIds("1", "2", "3")
+g. 模糊查询
+	fuzzyQuery("id", "38")
+h. 多字段查询
+	multi_match("text", "field1", "field2")
+
+bool查询
+QueryBuilders.boolQuery()
+                        .must(QueryBuilders.matchQuery("title", "浣溪沙"))
+                        .must(QueryBuilders.matchQuery("id", "1"))
+
+高亮
+没有api可在java中写程序进行高亮
+
+分页操作
+Pageable pageable = PageRequest.of(pageNum, pageSzie);
+.withPageable(pageable)    
+
+排序 
+ .withSort(SortBuilders.fieldSort("_id").order(SortOrder.DESC))
+
+查看只需要的字段
+.withSourceFilter(new FetchSourceFilter(new String[]{"string"}, null))    第一个参数代表需要的， 第二个代表不需要的

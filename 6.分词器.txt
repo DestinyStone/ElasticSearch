@@ -1,0 +1,21 @@
+标准分词器  standard   英语： 单词分词， 中文， 单字分词
+简单分词器  simple       英语： 单词分词 去掉数字， 中文， 一段， 不分词
+
+ik分词器 (需要自己安装， 对中文支持良好)
+ik_max_word 粒子化细分
+ik_smart 粗劣拆分   
+ 
+
+查看分词器运行结果
+GET _analyzer
+{
+	"analyzer": "simple",
+	"text": ""
+}
+
+指定分词器(需要在创建索引的时候指定)
+PUT /test
+{
+	.....
+	"name": {"type":"text", "analyzer": "分词器"}
+}

@@ -1,0 +1,18 @@
+1. 使用接口继承ElasticsearchRepository<T, T>    第一个T 代表操作的类对象， 第二个T代表操作的类对象中的id属性的类型
+public interface PostRepository extends ElasticsearchRepository<Post, String> {
+}
+2. 从IOC容器中获取 
+@Autowired 
+private PostRepository postRepository;
+
+文档操作
+a.添加
+posRepository.save(bean);
+b.查找
+postRepository.findById("1")    返回一个 Optional<T> 对象  可使用.get 获取到内部对象
+c.更新
+Bean bean = postRepository.findById("1").get();
+//修改bean
+posRepository.save(bean);      
+d.删除
+ postRepository.deleteById("1");

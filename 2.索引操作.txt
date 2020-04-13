@@ -17,6 +17,8 @@ a.查看全部
 	GET /_cat/indices
 b.查看单个索引
 	GET /persion
+c. 查看索引详细
+	GET /persion/_mapping
 
 3.删除索引
 DELETE /temp
