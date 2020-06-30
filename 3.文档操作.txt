@@ -1,5 +1,5 @@
 1.增加文档
-a.指定id方式
+a.指定id方式 （常用）
 PUT /persion/_doc/id
 {
 	"id": "1",
@@ -27,7 +27,7 @@ POST /persion/_doc/id/_update    (这里不加_update 的话 会覆盖文档)
 DELETE /persion/_doc/1
 
 5. 批量操作
-POST /persion
+POST /persion/_bulk
 	{"index":{"_id": "1"}}                    
 		{"id": "1", "name": "zs"}                   #增加操作
 	{"update":{"_id": "1"}}

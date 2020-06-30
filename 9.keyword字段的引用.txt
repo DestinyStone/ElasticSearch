@@ -1,0 +1,31 @@
+es 中存在问题
+如： 怎么寻找integer或ip字段中 以123开头的呢？
+
+或许可以使用 wildcard查询  123*  但 wildcard只适用于关键字和text字段 所以需要对interger或ip字段增加关键字
+
+
+PUT /test4
+{
+  "mappings": {
+    "properties": {
+      "int": {
+        "type": "integer",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+springboot
+    @MultiField(mainField = @Field(type = FieldType.Integer),
+                otherFields = @InnerField(suffix = "keyword", type = FieldType.Keyword))
+    private Long test;
+
+

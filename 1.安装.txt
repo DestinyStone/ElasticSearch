@@ -27,7 +27,7 @@ discovery.zen.minimum_master_nodes: 1
 3. 进入kibana
 	docker exec -it kibana /bin/bash
 4. 修改配置文件
-	将配置文件kibana.yml中的elasticsearch.url改为正确的链接，默认为: http://elasticsearch:9200改为http://自己的IP地址:9200（这里我用的是外网， 内外不可用）
+	将配置文件kibana.yml中的elasticsearch.url改为正确的链接，默认为: http://elasticsearch:9200改为http://自己的IP地址:9200（这里我用的是外网， 内网不可用）
 	
 
 --------------------------------------------------------------------------------

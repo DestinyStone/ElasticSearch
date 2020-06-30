@@ -2,6 +2,9 @@
 ElasticsearchTemplate    //复制查询， 包含分页， 排序等
 ElasticsearchRepository   //简单查询使用     .search(QueryBuilders);
 
+创建索引
+elasticsearchTemplate.createIndex(User.class);
+
 2. 基本使用
 SearchQuery searchQuery = new NativeSearchQueryBuilder().witQuery("查询条件 可选(使用 QueryBuilders.  )").build();
 elasticsearchTemplate.queryForList(searchQuery, Post.class);
@@ -30,7 +33,8 @@ QueryBuilders.boolQuery()
                         .must(QueryBuilders.matchQuery("id", "1"))
 
 高亮
-没有api可在java中写程序进行高亮
+没有api可在java中写程序进行高亮, 可自己实现即
+String s = value.replaceAll(key, "<span color='red'>" + key + "</span>")
 
 分页操作
 Pageable pageable = PageRequest.of(pageNum, pageSzie);

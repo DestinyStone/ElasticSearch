@@ -1,0 +1,20 @@
+索引写法
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(indexName = "testkeyword")
+public class TestKeyword {
+
+    @Id
+    private Long id;
+
+    @Field(type = FieldType.Integer )
+    private Long i;
+
+    @Field(type = FieldType.Nested)
+    private User user;
+}
+
+
+elasticsearchTemplate.createIndex(TestKeyword.class);    //创建索引
+elasticsearchTemplate.putMapping(TestKeyword.class);  //增加映射
