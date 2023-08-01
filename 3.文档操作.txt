@@ -1,6 +1,6 @@
 1.增加文档
 a.指定id方式 （常用）
-PUT /persion/_doc/id
+POST /persion/_doc/id
 {
 	"id": "1",
 	"name", "zs"
